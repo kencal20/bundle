@@ -1,4 +1,4 @@
-import { setStatusBarBackgroundColor } from "expo-status-bar";
+
 import React, { Component } from "react";
 import {
   StyleSheet,
@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-class App extends Component {
+class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,10 +27,10 @@ class App extends Component {
           <Text style={styles.inputHeader}> Email</Text>
           <TextInput
             style={styles.input}
-            placeholder="email"
+            placeholder="anonymous@imail.info"
             autoCapitalize="none"
-            autoCorrect="false"
-            autoComplete="false"
+            autoCorrect={true}
+            autoComplete="off"
             value={this.state.email}
             onChangeText={(email) => {
               this.setState({ email });
@@ -41,9 +41,9 @@ class App extends Component {
             style={styles.input}
             placeholder="password"
             autoCapitalize="none"
-            autoCorrect="false"
-            autoComplete="false"
-            secureTextEntry="true"
+            autoCorrect={true}
+            autoComplete="off"
+            secureTextEntry
             value={this.state.password}
             onChangeText={(password) => {
               this.setState({ password });
@@ -52,10 +52,10 @@ class App extends Component {
           <Text style={styles.inputHeader}> Location</Text>
           <TextInput
             style={styles.input}
-            placeholder="Location"
-            autoCapitalize="true"
-            autoCorrect="true"
-            autoComplete="true"
+            placeholder="Accra,Ghana"
+            autoCapitalize="none"
+            autoCorrect={true}
+            autoComplete="off"
             value={this.state.location}
             onChangeText={(location) => {
               this.setState({ location });
@@ -67,9 +67,9 @@ class App extends Component {
           <TextInput
             style={styles.input}
             placeholder="dd/mm/yyyy"
-            autoCapitalize="true"
-            autoCorrect="true"
-            autoComplete="true"
+            autoCapitalize="none"
+            autoCorrect={true}
+            autoComplete="off"
             value={this.state.dateofBirth}
             onChangeText={(dateofBirth) => {
               this.setState({ dateofBirth });
@@ -79,23 +79,26 @@ class App extends Component {
           <Text style={styles.inputHeader}> Phone number</Text>
           <TextInput
             style={styles.input}
-            placeholder="phone number"
-            autoCapitalize="true"
-            autoCorrect="true"
-            autoComplete="true"
+            placeholder="020-000-0000"
+            autoCapitalize="none"
+            autoCorrect={true}
+            autoComplete="off"
             value={this.state.number}
             type="number"
             onChangeText={() => {
-              this.setState({ dateofBirth });
+              this.setState({ number });
             }}
           />
         </View>
-        <TouchableOpacity style={styles.signupButton}>
-          <Text style={styles.signupText}>Signup</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.loginButton}>
-          <Text style={styles.loginText}>login</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.signupButton}>
+            <Text style={styles.signupText}>Signup</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.signupButton, styles.loginButton]}>
+            <Text style={[styles.signupText, styles.loginText]}>login</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
     );
   }
@@ -104,9 +107,14 @@ class App extends Component {
 const styles = StyleSheet.create({
   container: {
     marginTop: 50,
-    marginHorizontal: 2,
+    marginHorizontal: 6,
   },
-
+  registrationForm_Header: {
+    marginBottom: 30,
+    marginLeft: 30,
+    fontWeight: "bold",
+    fontSize: 30,
+  },
   input: {
     width: 140,
     height: 47,
@@ -130,42 +138,43 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 
-  registrationForm_Header: {
-    marginBottom: 30,
-    marginLeft: 30,
-    fontWeight: "bold",
-    fontSize: 30,
+  buttonContainer: {
+    width: '80%',
+    alignItems: 'center',
+    marginHorizontal: 15
+
   },
   signupButton: {
-    width: 140,
-    height: 47,
+    width: '100%',
+    height: 70,
     borderRadius: 9,
-    borderColor: "black",
-    borderWidth: 1,
+    borderColor: "white",
+    borderWidth: 2,
     marginBottom: 6,
     marginLeft: 45,
     top: 50,
-    backgroundColor: "dodgerblue",
+    backgroundColor: "black",
+    padding: 20, justifyContent: "center",
+    alignItems: 'center'
   },
 
   signupText: {
     textAlign: "center",
-    margin: 14.5,
     color: "white",
+    fontSize: 15,
     fontWeight: "bold",
+
   },
   loginButton: {
-    position: "absolute",
-    left: 200,
-    top: 335,
-    textAlign:'center'
+    textAlign: 'center',
+    backgroundColor: 'white',
+    borderColor: 'black',
+    borderWidth: 2
   },
   loginText: {
-    textAlign: "center",
-    margin: 14.5,
-    color: "dodgerblue",
-    fontWeight: "bold",
+    color: "black",
+
   },
 });
 
-export default App;
+export default Form;
