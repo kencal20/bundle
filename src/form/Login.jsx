@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 
-export default function Login({navigation}) {
+export default function Login({ navigation }) {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <Text style={styles.header}>Log in</Text>
@@ -28,10 +28,15 @@ export default function Login({navigation}) {
           autoCapitalize="none"
           autoCorrect={false}
           autoComplete="off"
-          secureTextEntry={true}
+          secureTextEntry
         />
       </View>
-      <TouchableOpacity style={styles.forgot_link}>
+      <TouchableOpacity
+        style={styles.forgot_link}
+        onpress={() => {
+          navigation.navigate();
+        }}
+      >
         <Text style={styles.forgot_text}>Forgot Password ?</Text>
       </TouchableOpacity>
       <View>
@@ -40,7 +45,7 @@ export default function Login({navigation}) {
         </TouchableOpacity>
       </View>
       <View style={styles.no_Account}>
-        <Text style={styles.signin_text}>
+        <Text>
           Don't have account?
           <TouchableOpacity
             style={styles.signin_link}
@@ -48,7 +53,7 @@ export default function Login({navigation}) {
               navigation.navigate("Signup");
             }}
           >
-            <Text>Signin</Text>
+            <Text style={styles.signin_text}>Signin</Text>
           </TouchableOpacity>
         </Text>
       </View>
@@ -93,15 +98,23 @@ const styles = StyleSheet.create({
     color: "white",
   },
   no_Account: {
-    marginTop: 30,
-  },
-  signin_text: {
-    alignSelf: "center",
-    fontSize: 16,
+    marginTop: 10,
+    padding:20
+  
   },
   signin_link: {
-    marginLeft: 20,
+    marginLeft: 10,
     fontWeight: "500",
+    color: "purple", 
+
+  },
+  signin_text: {
+    position:'relative',
+    alignSelf:'center',
+    top:5,
+    left:5,
     color: "purple",
+    fontSize: 16,
+    fontWeight:'bold'
   },
 });

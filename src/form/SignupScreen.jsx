@@ -7,79 +7,64 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
-class SignupScreen extends Component() {
-  constructor(props) {
-    super(props);
+export default function Signup({ navigation }) {
+  return (
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <Text style={styles.header}>Sign up</Text>
 
-    this.state = {
-      Username: "",
-      Email: "",
-      Password: "",
-      confirmPassword: "",
-    };
-  }
-
-  render() {
- 
-    return (
-      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-        <Text style={styles.header}>Sign up</Text>
-
-        <View style={styles.input_field}>
-          <TextInput
-            style={styles.input}
-            placeholder="Username"
-            autoCapitalize="none"
-            autoCorrect={false}
-            autoComplete="off"
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Email"
-            autoCapitalize="none"
-            autoCorrect={false}
-            autoComplete="off"
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            autoCapitalize="none"
-            autoCorrect={false}
-            autoComplete="off"
-            secureTextEntry={true}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Confirm Password"
-            autoCapitalize="none"
-            autoCorrect={false}
-            autoComplete="off"
-            secureTextEntry={true}
-          />
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.signup_link}>
-            <Text style={styles.signup_text}>Sign up</Text>
+      <View style={styles.input_field}>
+        <TextInput
+          style={styles.input}
+          placeholder="Username"
+          autoCapitalize="none"
+          autoCorrect={false}
+          autoComplete="off"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          autoCapitalize="none"
+          autoCorrect={false}
+          autoComplete="off"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          autoCapitalize="none"
+          autoCorrect={false}
+          autoComplete="off"
+          secureTextEntry
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Confirm Password"
+          autoCapitalize="none"
+          autoCorrect={false}
+          autoComplete="off"
+          secureTextEntry
+        />
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.signup_link}>
+          <Text style={styles.signup_text}>Sign up</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.account_already}>
+        <Text>
+          You already have an account?
+          <TouchableOpacity
+            style={styles.login_link}
+            onPress={() => {
+              navigation.navigate("Login");
+            }}
+          >
+            <Text style={styles.login_Text}>Login</Text>
           </TouchableOpacity>
-        </View>
-        <View style={styles.account_already}>
-          <Text style={styles.login_Text}>
-            You already have an account?
-            <TouchableOpacity
-              style={styles.login_link}
-              onPress={() => {
-                useNavigation.Login();
-              }}
-            >
-              <Text>Log in</Text>
-            </TouchableOpacity>
-          </Text>
-        </View>
-      </ScrollView>
-    );
-  }
+        </Text>
+      </View>
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -106,9 +91,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 40,
     marginVertical: 30,
+    justifyContent: "center",
+  },
+
+  signup_link: {
+    alignItems: "center",
+    justifyContent: "center",
   },
   signup_text: {
-    alignSelf: "center",
     marginVertical: 4,
     color: "white",
     fontSize: 20,
@@ -118,12 +108,17 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   login_Text: {
-    fontSize: 15,
+    position: "relative",
+    alignSelf: "center",
+    top: 5,
+    left: 5,
+    color: "purple",
+    fontSize: 16,
+    fontWeight: "bold",
   },
   login_link: {
     marginLeft: 10,
+    fontWeight: "500",
     color: "purple",
-    fontWeight: "bold",
   },
 });
-export default SignupScreen;
